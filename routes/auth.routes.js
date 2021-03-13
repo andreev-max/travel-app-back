@@ -36,8 +36,8 @@ router.post(
 
 			const user = new User({ email, password: hashedPassword });
 
-			await user.save();
-
+			const result = await user.save();
+			console.log(result)
 			// 201 status когда чтото создаётся
 			res.status(201).json({ message: "That's all right. User created" });
 		} catch (e) {
