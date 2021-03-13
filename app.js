@@ -3,22 +3,25 @@ const config = require('config');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const auth = require('./routes/auth.routes');
+require('dotenv').config();
+const uri = process.env.MONGO_CONNECTION_URL;
 
 app.use(express.json({ extended: true }))
 app.use(cors());
-app.use('/api/auth', require('./routes/auth.routes'))
+app.use(auth)
 
-const PORT = config.get('PORT') || 8080;
+// const PORT = config.get('PORT') || 8080;
 
 async function start() {
 	try {
-		await mongoose.connect(config.get('MONGO_CONNECTION_STRING'), {
+		await mongoose.connect(uri, {
 			useCreateIndex: true,
 			useNewUrlParser: true,
 			useUnifiedTopology: true
 		});
-		app.listen(PORT, () => {
-			console.log(`Server has been started on port ${PORT}`);
+		app.listen(process.env.PORT || 8080, () => {
+			console.log(`Server has been started on port ${process.env.PORT || 8080}`);
 		});
 	} catch (e) {
 		console.log('Server error', e.message);
