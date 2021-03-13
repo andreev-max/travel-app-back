@@ -1,11 +1,10 @@
-const origin = 'https://nfc-jsu.herokuapp.com';
+const origin = 'https://travel-best-app.herokuapp.com';
 
-const getRootRoute = (trailing) => `${origin}/${trailing}`;
-const getUserRoute = (trailing) => `${origin}/user/${trailing}`;
+const getRoute = (trailing) => `${origin}/${trailing}`;
 
 export const routes = {
-  submitGame: getRootRoute('submit-game'),
-  scores: getRootRoute('scores'),
+  submitGame: getRoute('submit-game'),
+  scores: getRoute('scores'),
   user: {
     status: getUserRoute('status'),
     signup: getUserRoute('signup'),
