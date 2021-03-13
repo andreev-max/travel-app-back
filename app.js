@@ -7,13 +7,12 @@ const app = express();
 app.use(express.json({ extended: true }))
 
 app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/link', require('./routes/link.routes'))
-app.use('/t', require('./routes/redirect.routes'))
-const PORT = config.get('port') || 8080;
+
+const PORT = config.get('PORT') || 8080;
 
 async function start() {
 	try {
-		await mongoose.connect(config.get('mongoUri'), {
+		await mongoose.connect(config.get('MONGO_CONNECTION_STRING'), {
 			useCreateIndex: true,
 			useNewUrlParser: true,
 			useUnifiedTopology: true
