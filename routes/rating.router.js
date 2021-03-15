@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Rating = require('../models/Rating');
+const Rating = require('../models/Rating.schema');
 const auth = require('../middlewares/auth.middleware');
 const router = Router();
 
