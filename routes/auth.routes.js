@@ -6,7 +6,6 @@ const { check, validationResult, body } = require('express-validator');
 const User = require('../models/User.schema');
 const router = Router();
 
-//  /register
 router.post(
 	'/register',
 	[
@@ -24,9 +23,9 @@ router.post(
 				});
 			}
 
-			const { email, password } = req.body; // парсим что пришло с фронта
+			const { email, password } = req.body;
 
-			const candidate = await User.findOne({ email }); // ищем есть ли уже такой email в базе
+			const candidate = await User.findOne({ email });
 
 			if (candidate) {
 				return res.status(400).json({ message: 'Sorry, but this user already exists' });
@@ -38,7 +37,6 @@ router.post(
 
 			const result = await user.save();
 			console.log(result)
-			// 201 status когда чтото создаётся
 			res.status(201).json({ message: "That's all right. User created" });
 		} catch (e) {
 			res.status(500).json({ message: 'something wrong' });
@@ -46,7 +44,6 @@ router.post(
 	}
 );
 
-//  /login
 router.post(
 	'/login',
 	[
@@ -65,7 +62,7 @@ router.post(
 				});
 			}
 
-			const { email, password } = req.body; // парсим что пришло с фронта
+			const { email, password } = req.body;
 
 			const user = await User.findOne({ email });
 
