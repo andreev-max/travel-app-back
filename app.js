@@ -5,12 +5,14 @@ const cors = require('cors');
 const app = express();
 const auth = require('./routes/auth.routes');
 const rating = require('./routes/rating.router');
+const country = require('./routes/country.router');
 require('dotenv').config();
 const uri = process.env.MONGO_CONNECTION_URL;
 
 app.use(express.json({ extended: true }))
 app.use(cors());
 app.use(auth)
+app.use(country)
 app.use(rating)
 
 async function start() {
