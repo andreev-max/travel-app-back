@@ -20,7 +20,8 @@ async function start() {
 		await mongoose.connect(uri, {
 			useCreateIndex: true,
 			useNewUrlParser: true,
-			useUnifiedTopology: true
+			useUnifiedTopology: true,
+			useFindAndModify: false
 		});
 		app.listen(process.env.PORT || 8080, () => {
 			console.log(`Server has been started on port ${process.env.PORT || 8080}`);
