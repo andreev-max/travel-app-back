@@ -59,7 +59,7 @@ router.post('/post-rating', auth, async (req, res) => {
 		// }
 		// const queryResult = await Rating.updateOne({ attraction }, { $push: { ratingArr: ratingObj } });
 
-		res.status(200).json(rating);
+		res.status(200).json(value);
 	} catch (e) {
 		res.status(500).json({ message: 'something wrong' });
 	}
