@@ -14,7 +14,6 @@ router.post(
 	],
 	async (req, res) => {
 		try {
-			console.log(req.body);
 			const errors = validationResult(req);
 
 			if (!errors.isEmpty()) {
@@ -39,7 +38,7 @@ router.post(
 			await user.save();
 			res.status(201).json({ message: "That's all right. User created" });
 		} catch (e) {
-			console.log(e);
+			console.log('auth', e);
 			res.status(500).json({ message: 'something wrong' });
 		}
 	}
@@ -53,7 +52,6 @@ router.post(
 	],
 	async (req, res) => {
 		try {
-			console.log(req.body);
 			const errors = validationResult(req);
 
 			if (!errors.isEmpty()) {
@@ -81,7 +79,7 @@ router.post(
 
 			res.json({ token, userId: user.id, name: user.name });
 		} catch (e) {
-			console.log(e);
+			console.log('login', e);
 			res.status(500).json({ message: 'something wrong' });
 		}
 	}
