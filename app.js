@@ -9,11 +9,11 @@ const country = require('./routes/country.router');
 require('dotenv').config();
 const uri = process.env.MONGO_CONNECTION_URL;
 
-app.use(express.json({ extended: true }))
+app.use(express.json({ extended: true }));
 app.use(cors());
-app.use(auth)
-app.use(country)
-app.use(rating)
+app.use(auth);
+app.use(country);
+app.use(rating);
 
 async function start() {
 	try {
@@ -28,7 +28,7 @@ async function start() {
 		});
 	} catch (e) {
 		console.log('Server error', e.message);
-    process.exit(1)
+		process.exit(1);
 	}
 }
 

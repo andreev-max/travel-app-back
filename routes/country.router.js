@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const Rating = require('../models/Rating.schema');
 const auth = require('../middlewares/auth.middleware');
 const router = Router();
 const axios = require('axios');
@@ -12,16 +11,12 @@ const getResource = async (url) => {
 	return res.data;
 };
 
-const api = '5ae2e3f221c38a28845f05b6f6e71bf1418f61c83b379c005bffa503';
-
 const getWeatherApi = (cityName) =>
 	`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d24b900fdfd48da2c4f4dcae7fc4fb18`;
 
 const getWeatherIcon = (name) => `http://openweathermap.org/img/w/${name}.png`;
 
 const getCurrency = (code) => `https://v6.exchangerate-api.com/v6/ffd05e84cd25512fd3bbc726/latest/${code}`;
-
-const getTrip = (name) => `https://api.opentripmap.com/0.1/en/places/geoname?apikey=${api}&${name}`;
 
 router.get('/country', auth, async (req, res) => {
 	try {
@@ -50,14 +45,12 @@ router.get('/country', auth, async (req, res) => {
 			BYN: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.BYN} BYN`
 		};
 
-		const fetchedImage = await client.photos.search({ query: `${capital} flag`, page: 1, per_page: 1 });
+		const fetchedImage = await client.photos.search({ query: `${country} flag`, page: 1, per_page: 1 });
 		const imageUrl = fetchedImage.photos[0].src.large;
-
-		
-		
 
 		res.status(200).json({ weather, currency, imageUrl });
 	} catch (e) {
+		console.log(e);
 		res.status(500).json({ message: 'something wrong' });
 	}
 });
