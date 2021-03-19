@@ -38,8 +38,8 @@ router.get('/country', auth, async (req, res) => {
 		const fetchedCurrency = await getResource(getCurrency(currencyCode));
 
 		const currency = {
-			USD: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.USD} EUR`,
-			EUR: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.EUR} USD`,
+			USD: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.USD} USD`,
+			EUR: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.EUR} EUR`,
 			BYN: `One ${currencyCode} can be exchanged for ${fetchedCurrency.conversion_rates.BYN} BYN`
 		};
 
