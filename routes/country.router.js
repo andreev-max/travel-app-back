@@ -14,7 +14,7 @@ const getResource = async (url) => {
 const getWeatherApi = (cityName) =>
 	`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d24b900fdfd48da2c4f4dcae7fc4fb18`;
 
-const getCurrency = (code) => `https://v6.exchangerate-api.com/v6/ffd05e84cd25512fd3bbc726/latest/${code}`;
+const getCurrency = (code) => `https://v6.exchangerate-api.com/v6/e7d6068c4ab73474c6793236/latest/${code}`;
 
 const getTimeZone = (country) => `https://restcountries.eu/rest/v2/name/${country}`
 
