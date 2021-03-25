@@ -1,23 +1,33 @@
-const express = require('express');
 const config = require('config');
+require('dotenv').config();
+const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const app = express();
-const auth = require('./routes/auth.routes');
+const fileupload = require('express-fileupload');
+const auth = require('./routes/auth.router');
 const rating = require('./routes/rating.router');
 const country = require('./routes/country.router');
-require('dotenv').config();
-const uri = process.env.MONGO_CONNECTION_URL;
+const upload = require('./routes/upload.router');
+
+console.log(process.env.MONGO_CONNECTION_URL)
+
+const app = express();
 
 app.use(express.json({ extended: true }));
+app.use(
+	fileupload({
+		useTempFiles: true
+	})
+);
 app.use(cors());
 app.use(auth);
 app.use(country);
 app.use(rating);
+app.use(upload);
 
 async function start() {
 	try {
-		await mongoose.connect(uri, {
+		await mongoose.connect(process.env.MONGO_CONNECTION_URL, {
 			useCreateIndex: true,
 			useNewUrlParser: true,
 			useUnifiedTopology: true,

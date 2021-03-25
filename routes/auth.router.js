@@ -77,6 +77,8 @@ router.post(
 
 			const token = jwt.sign({ userId: user.id }, config.get('jwtSecret'), { expiresIn: '2h' });
 
+			const avatarURL = user.avatarURL || "http://res.cloudinary.com/nazdac/image/upload/v1616652013/travelAppFolder/dmlfcuvyr79gpkbgg639.jpg"
+
 			res.json({ token, userId: user.id, name: user.name });
 		} catch (e) {
 			console.log('login', e);

@@ -4,7 +4,7 @@ const router = Router();
 const axios = require('axios');
 const { createClient } = require('pexels');
 
-const client = createClient('563492ad6f91700001000001660c67650fd246f79fdca8e73131bf5d');
+const client = createClient(process.env.PEXELS_API_KEY);
 
 const getResource = async (url) => {
 	const res = await axios.get(`${url}`);
