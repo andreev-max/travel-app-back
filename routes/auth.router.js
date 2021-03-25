@@ -79,7 +79,7 @@ router.post(
 
 			const avatarURL = user.avatarURL || "http://res.cloudinary.com/nazdac/image/upload/v1616652013/travelAppFolder/dmlfcuvyr79gpkbgg639.jpg"
 
-			res.json({ token, userId: user.id, name: user.name });
+			res.json({ token, userId: user.id, name: user.name, avatarURL });
 		} catch (e) {
 			console.log('login', e);
 			res.status(500).json({ message: 'something wrong' });
